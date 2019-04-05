@@ -1,4 +1,33 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'com.github.dcendents.android-maven'
+
+ext {
+
+    bintrayRepo = "orgrepo"
+    bintrayName = "ru.appvelox.library"
+
+    publishedGroupId = 'ru.appvelox.library'
+    libraryName = 'library'
+    artifact = 'library'
+
+    libraryDescription = 'Some desc'
+
+    siteUrl = 'https://github.com/MishkaBolgov/MyLibrary'
+    gitUrl = 'https://github.com/MishkaBolgov/MyLibrary.git'
+
+    libraryVersion = '1.1.6'
+
+    developerId = 'MishkaBolgov'
+    developerName = 'Mikhail Bolgov'
+    developerEmail = 'bologv@appvelox.ru'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
 
 android {
     compileSdkVersion 28
@@ -31,4 +60,13 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+
+if (project.rootProject.file('local.properties').exists()) {
+    apply from: 'https://raw.githubusercontent.com/wajahatkarim3/JCenter-Gradle-Scripts/master/install.gradle'
+    apply from: 'https://raw.githubusercontent.com/wajahatkarim3/JCenter-Gradle-Scripts/master/bintray.gradle'
+}
+repositories {
+    mavenCentral()
 }
